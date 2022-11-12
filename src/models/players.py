@@ -12,8 +12,6 @@ class Player(db.Model):
     rebounds = db.Column(db.Integer)
     assists = db.Column(db.Integer)
 
-    # user_players_id = db.Column(db.Integer, db.ForeignKey('user_players.id'), nullable = False)
-
     user_players = db.relationship('UserPlayer', back_populates='players', cascade='all, delete')
 
 

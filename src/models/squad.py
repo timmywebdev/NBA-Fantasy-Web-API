@@ -8,16 +8,16 @@ class Squad(db.Model):
     name = db.Column(db.String)
     league = db.Column(db.String)
 
-    # Foreign Keys
+    player_id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
-    # Relationships
+    player = db.relationship('Player', back_populates='squads')
     user = db.relationship('User', back_populates='squads')
 
 
 class SquadSchema(ma.Schema):
-    users = fields.Nested('UserSchema', only=['name', 'email'])
-
+    user = fields.Nested('UserSchema', only=['name', 'email'])
+    player = fields.Nested('PlayerSchema', exclude=['user'])
 
     class Meta:
         fields = ('name', 'league', 'user')
