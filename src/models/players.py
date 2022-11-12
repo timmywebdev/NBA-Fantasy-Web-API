@@ -12,11 +12,11 @@ class Player(db.Model):
     rebounds = db.Column(db.Integer)
     assists = db.Column(db.Integer)
 
-    user_players = db.relationship('UserPlayer', back_populates='players', cascade='all, delete')
+    squads = db.relationship('Squad', back_populates='players', cascade='all, delete')
 
 
 class PlayerSchema(ma.Schema):
-    user_players = fields.Nested('UserPlayerSchema')
+    squads = fields.Nested('SquadSchema')
 
     class Meta:
         fields = ('name', 'team', 'position', 'points', 'rebounds', 'assists')
