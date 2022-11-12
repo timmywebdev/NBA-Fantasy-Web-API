@@ -28,17 +28,17 @@ def seed_db():
         User(
             name = 'Anthony Hoson',
             email = 'ahoson@abc.com',
-            password = bcrypt.generate_password_hash('hello123').decode('utf-8'),
+            password = bcrypt.generate_password_hash('hello123').decode('utf-8')
         ),
         User(
             name = 'Matthew News',
             email = 'matthewnews@abc.com',
-            password = bcrypt.generate_password_hash('password123').decode('utf-8'),
+            password = bcrypt.generate_password_hash('password123').decode('utf-8')
         ),
         User(
             name = 'Timothy Newman',
             email = 'tnewman@abc.com',
-            password = bcrypt.generate_password_hash('happy123').decode('utf-8'),
+            password = bcrypt.generate_password_hash('happy123').decode('utf-8')
         )
     ]
 
@@ -52,8 +52,7 @@ def seed_db():
             position = 'PG',
             points = '40',
             rebounds = '5',
-            assists = '5',
-            squad = squads[0]
+            assists = '5'
 
         ),
         Player(
@@ -62,8 +61,7 @@ def seed_db():
             position = 'SF',
             points = '15',
             rebounds = '10',
-            assists = '10',
-            squad = squads[0]
+            assists = '10'
         ),
         Player(
             name = 'James Harden',
@@ -71,8 +69,7 @@ def seed_db():
             position = 'PG',
             points = '30',
             rebounds = '5',
-            assists = '10',
-            squad = squads[0]
+            assists = '10'
         )
     ]
 
@@ -82,20 +79,17 @@ def seed_db():
 
     squads = [
         Squad(
-            name = "Anthony's team",
-            league = 'Friends',
-            users = users[1]
+            user = users[1],
+            players = players[0]
         ),
         Squad(
-            name = 'Big Dogs',
-            league = 'Fantasy 2022',
-            users = users[3]
+            user = users[3],
+            players = players[1]
         ),
         Squad(
-            name = 'Hurstville Hasbullas',
-            league = 'Mapogos',
-            users = users[2]
-        ),
+            user = users[2],
+            players = players[2]
+        )
     ]
 
     db.session.add_all(squads)

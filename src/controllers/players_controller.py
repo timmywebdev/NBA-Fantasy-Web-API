@@ -14,7 +14,7 @@ players_bp = Blueprint('players', __name__, url_prefix='/players')
 # Do not need to be a user to use GET route for players
 @players_bp.route('/')
 def get_all_players():
-    stmt = db.select(Player).order_by(Player.name.desc())
+    stmt = db.select(Player).order_by(Player.id.asc())
     players = db.session.scalars(stmt)
     return PlayerSchema(many=True).dump(players)
 
@@ -48,7 +48,6 @@ def create_player():
             points = data['points'],
             rebounds = data['rebounds'],
             assists = data['assists'],
-            user_id = get_jwt_identity()
         )
 
         db.session.add(player)
@@ -56,7 +55,7 @@ def create_player():
 
         return {
                 'Message': 'Player added successfully',
-                'Canyon': PlayerSchema().dump(player)
+                'Player': PlayerSchema().dump(player)
         }
 
     return {'Error': 'You must be logged in to add a player to the database'}, 404

@@ -42,3 +42,4 @@ def authorize_user():
 
     if not user.is_admin:
         abort(401, description='You must be an administrator to do that')
+    return True

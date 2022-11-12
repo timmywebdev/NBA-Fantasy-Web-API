@@ -12,6 +12,7 @@ class Player(db.Model):
     rebounds = db.Column(db.Integer)
     assists = db.Column(db.Integer)
 
+    # Relationships
     squads = db.relationship('Squad', back_populates='players', cascade='all, delete')
 
 
@@ -19,5 +20,5 @@ class PlayerSchema(ma.Schema):
     squads = fields.Nested('SquadSchema')
 
     class Meta:
-        fields = ('name', 'team', 'position', 'points', 'rebounds', 'assists')
+        fields = ('id', 'name', 'team', 'position', 'points', 'rebounds', 'assists')
         ordered = True

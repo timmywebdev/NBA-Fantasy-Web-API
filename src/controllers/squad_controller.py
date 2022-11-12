@@ -10,22 +10,19 @@ squad_bp = Blueprint('squad', __name__, url_prefix='/squad')
 
 # Squads
 # GET, POST, DELETE routes for Squads
-# Users can view other users squads but they can only edit their own squad
+# Users can view other users squad but they can only edit their own squad
 
 # View a user's squad
-@squad_bp.route('/to_do/<int:user_id>/')
+@squad_bp.route('/<int:user_id>/')
 @jwt_required()
 def get_user_squads(user_id):
-    stmt = db.select(Squad).where(and_(
-        Squad.user_id == user_id,
-        Squad.tag == 'To Do'
-    ))
+    stmt = db.select(Squad).where(Squad.user_id == user_id)
     players = db.session.scalars(stmt)
 
     return SquadSchema(many=True).dump(players)
 
-# Allows user to add a player to their squad
-@squad_bp.route('/to_do/<int:id>/', methods=['POST'])
+# Allows user to add a player to their squad list
+@squad_bp.route('/add/<int:id>', methods=['POST'])
 @jwt_required()
 def add_player_to_squad(id):
     stmt = db.select(Player).filter_by(id=id)
@@ -33,10 +30,7 @@ def add_player_to_squad(id):
 
     if player:
         squad = Squad(
-            squad_id = id,
-            name = (),
-            league = 'To Do',
-            player_id = id
+            player_id = id,
             user_id = get_jwt_identity()
         )
         db.session.add(squad)
@@ -48,5 +42,17 @@ def add_player_to_squad(id):
 
     return {'Error': f'Player not found with id {id}'}, 404
 
-# Allows user to remove a player from their squad
+# Allows user to remove a player from their squad list
+@squad_bp.route('/delete/<int:squad_id>', methods=['DELETE'])
+@jwt_required()
+def delete_squad_player(squad_id):
+    stmt = db.select(Squad).filter_by(id = squad_id)
+    squad_player = db.session.scalar(stmt)
+    if not squad_player:
+        return {'Error': f'Player not found with id {squad_id} in your squad'}, 404
+    if squad_player:
+        if Squad.user_id == int(get_jwt_identity()):
+            db.session.delete(squad_player)
+            db.session.commit()
+            return {'Message': f'You have removed the player with id {squad_id} from your squad.'}
 

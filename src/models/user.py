@@ -10,6 +10,7 @@ class User(db.Model):
     password = db.Column(db.String, nullable=False)
     is_admin = db.Column(db.Boolean, default=False)
 
+    # Relationships
     squads = db.relationship('Squad', back_populates='user', cascade='all, delete')
 
 class UserSchema(ma.Schema):
