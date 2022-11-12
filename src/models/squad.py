@@ -7,16 +7,18 @@ class Squad(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
     league = db.Column(db.String)
-    
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable = False)
 
-    users = db.relationship('User', back_populates='squads')
-    user_players = db.relationship('UserPlayer', back_populates='squads', cascade = 'all, delete')
+    # Foreign Keys
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+
+    # Relationships
+    user = db.relationship('User', back_populates='squads')
+
 
 class SquadSchema(ma.Schema):
     users = fields.Nested('UserSchema', only=['name', 'email'])
-    user_players = fields.List(fields.Nested('UserPlayerSchema', exclude = ['squads']))
+
 
     class Meta:
-        fields = ('name', 'league', 'users')
+        fields = ('name', 'league', 'user')
         ordered = True
