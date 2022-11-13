@@ -6,6 +6,10 @@ from flask_jwt_extended import get_jwt_identity, jwt_required
 
 users_bp = Blueprint('users', __name__, url_prefix='/users')
 
+# ~~~~~~~~~~~~~~~~~~~ USERS ~~~~~~~~~~~~~~~~~~~~
+# GET, POST, PUT, PATCH, DELETE routes
+
+# Get list of all users (ADMIN ONLY)
 @users_bp.route('/')
 @jwt_required()
 def get_all_users():
@@ -14,6 +18,7 @@ def get_all_users():
     users = db.session.scalars(stmt)
     return UserSchema(many=True, exclude=['password']).dump(users)
 
+# Get one singular user and their squad (Login ONLY)
 @users_bp.route('/<int:id>/')
 @jwt_required()
 def get_one_user(id):
@@ -26,10 +31,11 @@ def get_one_user(id):
 
     return {'error': f'User not found with id {id}'}, 404
 
+#  Update user information (Only that user can change)
 @users_bp.route('/update/', methods=['PUT', 'PATCH'])
 @jwt_required()
 def update_user():
-    # User update their name, password, email
+    # User update their name, password or email
     stmt = db.select(User).filter_by(id=get_jwt_identity())
     user = db.session.scalar(stmt)
 
