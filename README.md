@@ -113,10 +113,12 @@ This project utilises some third party services and PyPI packages. All dependenc
 
 ## R8 
 ### **Describe your projects models in terms of the relationships they have with each other**
-Three SQLAlchemy models were used in this project to represent the three database entities. These three models were the User mode, player model and the squad model. As showm in R6 in the ERD, their are relationships and constraints that exist between the entities which allow the API to run. The base class db.Model was used for each of the models. Each model had a primary key which was an ID and had at least one foreign key to establish a relationship with another model.
+Three SQLAlchemy models were used in this project to represent the three database entities. These three models were the User mode, player model and the squad model. As showm in R6 in the ERD, their are relationships and constraints that exist between the entities which allow the API to run. The base class db.Model was used for each of the models. Each model has a primary key which was an ID and some use a foreign key to establish a relationship with another model.
+
+Within the application, Squad players exists on the 'many' side of the relationship with Users as well as the 'many' side of the relationship with Players.
 
 #### **User Model**
-
+The user model is used to represent the users that have registered in the database. The user model does not require a foreign key since a user can exist by themself without adding players to their squad. 
 
 #### **Player Model**
 

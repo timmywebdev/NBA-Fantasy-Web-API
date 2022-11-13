@@ -8,8 +8,9 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 
 squad_bp = Blueprint('squad', __name__, url_prefix='/squad')
 
-# Squads
-# GET, POST, DELETE routes for Squads
+# ~~~~~~~~~~~~~~~~~~~ SQUAD PLAYERS ~~~~~~~~~~~~~~~~~~~~
+# GET, POST, DELETE routes
+
 # Users can view other users squad but they can only edit their own squad
 
 # View a user's squad
