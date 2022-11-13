@@ -158,10 +158,10 @@ The PostgreSQL database that stores the data for this server contains three tabl
 The relationships within the database can be visualised using the [Entity Relationship Diagram](docs/ERD.png) shown in [Requirement 6](#r6) of this README document. Each table contains a primary key which is a unique identifier for each table entry. The squads table contains two foreign keys which allows a relationship between the squads table with the user table as well as the squads table with the players table. By linking different tables together, this makes it so table entries are not duplicated within all the tables. This process, called 'normalisation' allows for more complex relationships to occur without the redundancy of duplicate entries. The crow's-foot notation of the arrows on the ERD represents the relationship of these tables. Here are all the relationships within the table:
 
 - A user has no relationship to player, so they are not directly connected.
-- A user can have none or many squad-players, so there is a zero-to-many relationship to squad. This allows the user to add as many squad players as they would like, or remove them all. The user can simply exist without adding players to their squad.
-- A player can be on none or many squads, so there is a zero-to-many relationship with squad. This means the player added, can exist in the database without being added to a squad, but it can also be added to many different squads.
-- A squad-player(squad) has a 1-to-1 relationship with user. The squad player can only be assigned to one user as they belong on the squad of that user if they exist. If a user has not added the squad-player, then the squad player will not exist.
-- A squad-player(squad) has a 1-to-1 relationship with player. The squad-player must take the attribute from the player and a squad player cannot exist without the player. As such, one squad player, can only be one player.
+- A user can have none or many squad-players, so there is a 'zero-to-many' relationship to squad. This allows the user to add as many squad players as they would like, or remove them all. The user can simply exist without adding players to their squad.
+- A player can be on none or many squads, so there is a 'zero-to-many' relationship with squad. This means the player added, can exist in the database without being added to a squad, but it can also be added to many different squads.
+- A squad-player(squad) has a '1-to-1' relationship with user. The squad player can only be assigned to one user as they belong on the squad of that user if they exist. If a user has not added the squad-player, then the squad player will not exist.
+- A squad-player(squad) has a '1-to-1' relationship with player. The squad-player must be a player and a squad player cannot exist without the player. As such, one squad player can only be one player.
 
 ---
 
