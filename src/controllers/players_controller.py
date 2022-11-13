@@ -8,8 +8,8 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 
 players_bp = Blueprint('players', __name__, url_prefix='/players')
 
-# Players
-# GET, POST, PUT, PATCH, DELETE for Players
+# ~~~~~~~~~~~~~~~~~~~ PLAYERS ~~~~~~~~~~~~~~~~~~~~
+# GET, POST, PUT, PATCH, DELETE
 
 # Do not need to be a user to use GET route for players
 @players_bp.route('/')
