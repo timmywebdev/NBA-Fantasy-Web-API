@@ -86,7 +86,7 @@ Here is the [API Endpoint Documentation](docs/API-Endpoints.md) for the project.
 ## R6 
 ### **ERD**
 
-![ERD](\docs/ERD.png)
+![ERD](docs/ERD.png)
 
 ---
 
@@ -138,7 +138,7 @@ In this project, Trello was used to manage the development stages of the web ser
 
 The Trello board can be found [here](https://trello.com/invite/b/8ir68SbL/ATTI9095dcedc2f2b65af0fe52dca04ca7c96099DFC9/t2a2)
 
-![Trello1](docs/trello_T2A2.png)
+![Trello](docs/Trello_T2A2.PNG)
 
 ## **Installation and Setup**
 
