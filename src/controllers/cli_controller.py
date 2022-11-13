@@ -4,7 +4,7 @@ from models.squad import Squad
 from models.user import User
 from models.players import Player
 
-
+# Blueprint for cli commands for CRUD functions
 db_commands = Blueprint('db', __name__)
 
 @db_commands.cli.command('create')
