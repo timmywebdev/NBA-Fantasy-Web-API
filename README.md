@@ -1,8 +1,11 @@
 # **NBA Fantasy API Webserver**
 ## **T2A2 - Timothy Nguyen**
 
-## Table Of Contents
+[Link to GitHub Repository](https://github.com/timmywebdev/TimothyNguyen_T2A2)
 
+
+## Table Of Contents
+  - [Installation and Setup](#installation-and-setup)
   - [R1: Identification of the problem you are trying to solve by building this particular app](#r1)
   - [R2: Why is it a problem that needs solving?](#r2)
   - [R3: Why have you chosen this database system. What are the drawbacks compared to others?](#r3)
@@ -13,10 +16,42 @@
   - [R8: Describe your projects models in terms of the relationships they have with each other](#r8)
   - [R9: Discuss the database relations to be implemented in your application](#r9)
   - [R10: Describe the way tasks are allocated and tracked in your project](#r10)
-  - [Installation and Setup](#installation-and-setup)
   - [References](#references)
 
 ---
+## **Installation and Setup**
+
+1. Open the terminal and create a new directory where you want the files to be
+
+2. Move into the directory and clone this repository using the following command:
+
+   ```git clone https://github.com/timmywebdev/TimothyNguyen_T2A2```
+
+3. Move into the src folder and activate a virtual environment using the following commands:
+
+    ```python3 -m venv .venv```
+
+    ```source .venv/bin/activate```
+
+4. Install the required dependencies using the following command:
+
+   ```pip install -r requirements.txt```
+
+5. Open PostgreSQL in your terminal and create a new database named 'nbafantasy', then create a user with all access to this database, and set a password for this user
+
+6. Open the .env file and add the details above to the DATABASE_URL using the following template, replacing `{user_name}` and `{password}` with the ones set in step 5:
+
+    ```DATABASE_URL = postgresql+psycopg2://{user_name}:{password}@127.0.0.1:5432/nbafantasy```
+
+7. Open the `.flaskenv` file, and set `FLASK_RUN_PORT` to any port that is available on your device
+
+8. In the terminal, run the following command to create dummy objects in the database for testing purposes:
+
+    ```flask db drop && flask db create && flask db seed```
+
+9. In the terminal, run the following command to initialize the API webserver:
+
+    ```flask run```
 
 ## **R1**
 ### **Identification of the problem you are trying to solve by building this particular app**
@@ -59,7 +94,7 @@ An Object Relational Mapper (ORM) is a language specific code library that acts 
 
 Below is an example of an SQL query and the same query written in Python with SQLAlchemy as the ORM:
 
-SQL:
+- SQL:
 
 ```SQL
 SELECT *
@@ -67,7 +102,7 @@ FROM user
 WHERE user_id = '1'
 ```
 
-Python:
+- Python:
 
 ```python
 stmt = db.select(User).filter_by(user_id=1)
@@ -176,6 +211,14 @@ The Trello board linke can be found [here](https://trello.com/invite/b/8ir68SbL/
 
 ![Trello](docs/Trello_T2A2.PNG)
 
-## **Installation and Setup**
-
 ## **References**
+1. [Trello](https://trello.com)
+2. [What is PSQL?](https://www.postgresql.org/docs/current/app-psql.html#:~:text=psql%20is%20a%20terminal%2Dbased,or%20from%20command%20line%20arguments.)
+3. [SQLAlchemy](https://pypi.org/project/SQLAlchemy/)
+4. [Flask-Marshmallow](https://pypi.org/project/flask-marshmallow/)
+5. [Flask-Bcrypt](https://pypi.org/project/Flask-Bcrypt/)
+6. [Flask-JWTExtended](https://pypi.org/project/Flask-JWT-Extended/)
+7. [psycopg2](https://pypi.org/project/psycopg2/)
+8. [python-dotenv](https://pypi.org/project/python-dotenv/)
+9. [pip-review](https://pypi.org/project/pip-review/)
+10. [lucid.app (for ERD Diagram)](https://lucid.app/)
