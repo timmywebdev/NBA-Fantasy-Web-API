@@ -39,17 +39,21 @@
 
 5. Open PostgreSQL in your terminal and create a new database named 'nbafantasy', then create a user with all access to this database, and set a password for this user
 
-6. Open the .env file and add the details above to the DATABASE_URL using the following template, replacing `{user_name}` and `{password}` with the ones set in step 5:
+6. Open the .env.sample file and add the details above to the DATABASE_URL using the following template, replacing {user_name} and {password} with the ones set in step 5:
 
     ```DATABASE_URL = postgresql+psycopg2://{user_name}:{password}@127.0.0.1:5432/nbafantasy```
 
-7. Open the `.flaskenv` file, and set `FLASK_RUN_PORT` to any port that is available on your device
+7. Open the `.env.sample` file, and add a string to the `JWT_SECRET_KEY = ` line  
 
-8. In the terminal, run the following command to create dummy objects in the database for testing purposes:
+8. Change the filename from `.env.sample` to `.env`
+
+9. Open the .flaskenv file, and set FLASK_RUN_PORT to any port (Recommended:8080)
+
+10. In the terminal, run the following command to create and seed tables in the database for testing purposes:
 
     ```flask db drop && flask db create && flask db seed```
 
-9. In the terminal, run the following command to initialize the API webserver:
+11. In the terminal, run the following command to initialize the API webserver:
 
     ```flask run```
 

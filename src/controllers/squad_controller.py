@@ -2,7 +2,6 @@ from flask import Blueprint
 from init import db
 from models.players import Player
 from models.squad import Squad, SquadSchema
-from models.user import User
 from flask_jwt_extended import jwt_required, get_jwt_identity
 
 squad_bp = Blueprint('squad', __name__, url_prefix='/squad')
@@ -69,19 +68,3 @@ def delete_player_from_squad(id):
         }
 
     return {'Error': f'Player not found with id {id}'}, 404
-
-
-
-# @squad_bp.route('/remove/<int:squad_id>', methods=['DELETE'])
-# @jwt_required()
-# def remove_player_from_squad(squad_id):
-#     stmt = db.select(Squad).filter_by(id = squad_id)
-#     squad_player = db.session.scalar(stmt)
-#     if not squad_player:
-#         return {'Error': f'Player not found with id {squad_id} in your squad'}, 404
-#     if squad_player:
-#         if Squad.user_id == int(get_jwt_identity()):
-#             db.session.delete(squad_player)
-#             db.session.commit()
-#             return {'Message': f'You have removed the player with id {squad_id} from your squad.'}
-
