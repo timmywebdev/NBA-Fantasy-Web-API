@@ -133,7 +133,7 @@ Here is the [API Endpoint Documentation](docs/API-Endpoints.md) for the project.
 
 ## R7 
 ### **Third party services**
-This project utilises some third party services and PyPI packages. All dependencies and the dependencies of the third party services are frozen into the [requirements.txt](requirements.txt) file. A Pypi link is provided for each of the packages listed below.
+This project utilises some third party services and PyPI packages. All dependencies and the dependencies of the third party services are frozen into the [requirements.txt](src/requirements.txt) file. A Pypi link is provided for each of the packages listed below.
 
 - [SQLAlchemy](https://pypi.org/project/SQLAlchemy/)
     - SQLAlchemy is the SQL toolkit and ORM written in python which implements a bridge between the application code and the PostgreSQL databse. Object Relational Mapper (ORM) is used to map the tables in the database to a Python class object model and vice versa. This allows us to use CRUD (create, read, update, delete) operations on the database.
