@@ -12,7 +12,7 @@ class User(db.Model):
     is_admin = db.Column(db.Boolean, default=False)
 
     # Relationships
-    squads = db.relationship('Squad', back_populates='user', cascade='all, delete')
+    squads = db.relationship('Squad', back_populates='user')
 
 class UserSchema(ma.Schema):
     # Validation for name to be between 3-25 characters and only contain letters and spaces
