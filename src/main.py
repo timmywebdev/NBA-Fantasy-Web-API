@@ -4,6 +4,8 @@ from controllers.players_controller import players_bp
 from controllers.squad_controller import squad_bp
 from controllers.auth_controller import auth_bp
 from controllers.cli_controller import db_commands
+from controllers.user_controller import users_bp
+from controllers.admin_controller import admin_bp
 from marshmallow.exceptions import ValidationError
 import os
 
@@ -26,6 +28,8 @@ def create_app():
     app.register_blueprint(auth_bp)
     app.register_blueprint(db_commands)
     app.register_blueprint(squad_bp)
+    app.register_blueprint(users_bp)
+    app.register_blueprint(admin_bp)
 
     # Error Handling
     @app.errorhandler(ValidationError)

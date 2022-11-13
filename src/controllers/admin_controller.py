@@ -6,7 +6,7 @@ from flask_jwt_extended import jwt_required
 
 admin_bp = Blueprint('admin', __name__, url_prefix='/admin')
 
-@admin_bp.route('/grant_admin/<int:user_id>/', methods=['PATCH'])
+@admin_bp.route('/give_admin/<int:user_id>/', methods=['PATCH'])
 @jwt_required()
 def grant_admin_access(user_id):
     # Admin can give a user admin privileges
@@ -22,7 +22,8 @@ def grant_admin_access(user_id):
     elif user:
         user.is_admin = True
         db.session.commit()
-        return UserSchema(exclude=['password']).dump(user)
+        return {'message': 'You have successfully given admin privileges to this user!',
+                'user': UserSchema(exclude=['password']).dump(user)}, 201
 
     else:
         return {'Message': f'User with id: {user_id} not found'}
@@ -44,7 +45,8 @@ def remove_admin_access(user_id):
     elif user:
         user.is_admin = False
         db.session.commit()
-        return UserSchema(exclude=['password']).dump(user)
+        return {'message': 'You have successfully removed admin privileges from this user!',
+                'user': UserSchema(exclude=['password']).dump(user)}, 201
 
     else:
         return {'Message': f'User with id: {user_id} not found'}

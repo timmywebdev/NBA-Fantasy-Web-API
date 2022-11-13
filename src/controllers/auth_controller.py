@@ -21,7 +21,8 @@ def register_user():
         )
         db.session.add(user)
         db.session.commit()
-        return UserSchema(exclude=['password']).dump(user), 201
+        return {'message': 'You are now registered!',
+                'user': UserSchema(exclude=['password']).dump(user)}, 201
 
     except IntegrityError:
         return {'Error': F'{user.email} or {user.name} already in use'}, 409
