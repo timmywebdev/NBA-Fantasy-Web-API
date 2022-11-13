@@ -118,7 +118,13 @@ Three SQLAlchemy models were used in this project to represent the three databas
 Within the application, Squad players exists on the 'many' side of the relationship with Users as well as the 'many' side of the relationship with Players.
 
 #### **User Model**
-The user model is used to represent the users that have registered in the database. The user model does not require a foreign key since a user can exist by themself without adding players to their squad. 
+The user model is used to represent the users that have registered in the database. The user model does not require a foreign key since a user can exist by themself without adding players to their squad. The user model has a one-to-many relationship with the squad players model since a user can have multiple squad players. 
+
+```python
+squads = db.relationship('Squad', back_populates='user')
+```
+
+The code shown above shows the relationship between the user model and the squad model. The `db.relationship()` function  creates a two way relationship between the two models allowing them to be available as an object to the other model. Since each player can have multiple squad players, the variable is a plural to indicate that. The `back_populates` argument shows which table that the relationship of squads exists with.
 
 #### **Player Model**
 
