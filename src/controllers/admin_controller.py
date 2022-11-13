@@ -14,9 +14,11 @@ def grant_admin_access(user_id):
     stmt = db.select(User).filter_by(id=user_id)
     user = db.session.scalar(stmt)
 
+    # Query returns and check if user is admin, if yes then print statement
     if user and user.is_admin is True:
         return {'Message': 'This user is an admin already.'}
 
+    # Query returns and the user is not an admin, then make them admin
     elif user:
         user.is_admin = True
         db.session.commit()
@@ -34,9 +36,11 @@ def remove_admin_access(user_id):
     stmt = db.select(User).filter_by(id=user_id)
     user = db.session.scalar(stmt)
 
+    # Query returns and user is not an admin, print statement
     if user and user.is_admin is False:
         return {'Message': 'This user is not an admin'}
 
+    # Query returns and the user is an admin, then remove admin privileges
     elif user:
         user.is_admin = False
         db.session.commit()
