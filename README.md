@@ -207,7 +207,7 @@ In this project, Trello was used to manage the development stages of the web ser
 
 The link to the Trello board as well as a screenshot is provided below.
 
-The Trello board linke can be found [here](https://trello.com/invite/b/8ir68SbL/ATTI9095dcedc2f2b65af0fe52dca04ca7c96099DFC9/t2a2).
+The Trello board link can be found [here](https://trello.com/invite/b/8ir68SbL/ATTI9095dcedc2f2b65af0fe52dca04ca7c96099DFC9/t2a2).
 
 ![Trello](docs/Trello_T2A2.PNG)
 
