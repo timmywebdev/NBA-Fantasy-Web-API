@@ -112,12 +112,12 @@ This project utilises some third party services and PyPI packages. All dependenc
 ---
 
 ## R8 
-### **Describe your projects models in terms of the relationships they have with each other**
+### ****Describe your projects models in terms of the relationships they have with each other****
 Three SQLAlchemy models were used in this project to represent the three database entities. These three models were the User mode, player model and the squad model. As showm in R6 in the ERD, their are relationships and constraints that exist between the entities which allow the API to run. The base class db.Model was used for each of the models. Each model has a primary key which was an ID and some use a foreign key to establish a relationship with another model.
 
 Within the application, Squad players exists on the 'many' side of the relationship with Users as well as the 'many' side of the relationship with Players.
 
-#### **User Model**
+- #### **User Model**
 The user model is used to represent the users that have registered in the database. The user model does not require a foreign key since a user can exist by themself without adding players to their squad. The user model has a one-to-many relationship with the squad players model since a user can have multiple squad players. 
 
 ```python
@@ -126,10 +126,22 @@ squads = db.relationship('Squad', back_populates='user')
 
 The code shown above shows the relationship between the user model and the squad model. The `db.relationship()` function  creates a two way relationship between the two models allowing them to be available as an object to the other model. Since each player can have multiple squad players, the variable is a plural to indicate that. The `back_populates` argument shows which table that the relationship of squads exists with.
 
-#### **Player Model**
+- #### **Player Model**
+The player model is used to represent the players and stats that the admin has added. The player model has no connection to the user model as they are not associated. However, the player model is linked to the squad model in a one-to-many as each player can belong to many different squads. The player model does not contain a foreign key.
 
+```python
+squads = db.relationship('Squad', back_populates='players')
+```
+This is the snippet of code that shows the relationship between the squad and players. It is the same as the user model's relationship with the squads as they are both one-to-many. 
 
-#### **Squad Model**
+- #### **Squad Model**
+The Squad model represents any players that users have chosen from the players database and have added to their squad. A user can have many squad players so the relationship between the squad-to-user is many-to-one. Squad players can also contain many players so that relationship is also many-to-one. Due to these two relations, the squad model contains two foreign keys to connect to the user model and the player model respectively.
+
+```python
+player_id = db.Column(db.Integer, db.ForeignKey('players.id'), nullable=False)
+user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+```
+The `player_id` variable is created with the `db.Column()` function. The `db.Integer()` makes sure that it is an integer input. The SQLAlchemy function `db.ForeignKey()` is then used to show that this is a foreign key in this model. `nullable` is then set to False as the id cannot be a null input since the player must exist. This is the same for the `user_id` variable. It undergoes the same constraints as mentioned just before since it is also an id number and since the user must exist to have a squad, nullable is also false.
 
 
 ---
